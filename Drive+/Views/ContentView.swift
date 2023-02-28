@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var f: Folder = Folder()
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
+        Text(f.name)
     }
 }
 

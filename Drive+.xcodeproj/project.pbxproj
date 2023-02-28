@@ -14,6 +14,9 @@
 		6A6F509C29A69E6D004E9E46 /* Drive_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F509B29A69E6D004E9E46 /* Drive_Tests.swift */; };
 		6A6F50A629A69E6E004E9E46 /* Drive_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F50A529A69E6E004E9E46 /* Drive_UITests.swift */; };
 		6A6F50A829A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F50A729A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift */; };
+		6AB3E44329AE853B00340F17 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44229AE853B00340F17 /* File.swift */; };
+		6AB3E44529AE854B00340F17 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44429AE854B00340F17 /* Folder.swift */; };
+		6AB3E44729AE855C00340F17 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44629AE855C00340F17 /* Document.swift */; };
 		C7E30F3F9F3E5A9835016BFA /* Pods_Drive_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191467162B044D0290A38ED5 /* Pods_Drive_.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		6A6F50A129A69E6E004E9E46 /* Drive+UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive+UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6F50A529A69E6E004E9E46 /* Drive_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_UITests.swift; sourceTree = "<group>"; };
 		6A6F50A729A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6AB3E44229AE853B00340F17 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		6AB3E44429AE854B00340F17 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		6AB3E44629AE855C00340F17 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		B78DDC28B97062F5F3B145AE /* Pods-Drive+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drive+.debug.xcconfig"; path = "Target Support Files/Pods-Drive+/Pods-Drive+.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,8 +115,9 @@
 		6A6F508929A69E65004E9E46 /* Drive+ */ = {
 			isa = PBXGroup;
 			children = (
+				6AB3E44129AE851D00340F17 /* Views */,
+				6AB3E44029AE851700340F17 /* Model */,
 				6A6F508A29A69E65004E9E46 /* Drive_App.swift */,
-				6A6F508C29A69E65004E9E46 /* ContentView.swift */,
 				6A6F508E29A69E6D004E9E46 /* Assets.xcassets */,
 				6A6F509029A69E6D004E9E46 /* Preview Content */,
 			);
@@ -142,13 +149,30 @@
 			path = "Drive+UITests";
 			sourceTree = "<group>";
 		};
+		6AB3E44029AE851700340F17 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6AB3E44229AE853B00340F17 /* File.swift */,
+				6AB3E44429AE854B00340F17 /* Folder.swift */,
+				6AB3E44629AE855C00340F17 /* Document.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6AB3E44129AE851D00340F17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6A6F508C29A69E65004E9E46 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BA94B1F420CD70922CBB9695 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				B78DDC28B97062F5F3B145AE /* Pods-Drive+.debug.xcconfig */,
 				58E1D0DDFEBB88BC6AEECC8E /* Pods-Drive+.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -309,7 +333,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A6F508D29A69E65004E9E46 /* ContentView.swift in Sources */,
+				6AB3E44329AE853B00340F17 /* File.swift in Sources */,
 				6A6F508B29A69E65004E9E46 /* Drive_App.swift in Sources */,
+				6AB3E44529AE854B00340F17 /* Folder.swift in Sources */,
+				6AB3E44729AE855C00340F17 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
