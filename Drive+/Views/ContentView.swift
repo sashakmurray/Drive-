@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    var f: Folder = Folder()
+    @State var files: [File] = [Document(), Folder(data: [Document(), Document()]), Document()]
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-        Text(f.name)
+        ScrollView {
+            ForEach($files) { file in
+                FileListView(file: file)
+            }
+        }
+        
     }
 }
 

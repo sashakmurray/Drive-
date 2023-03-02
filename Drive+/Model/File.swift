@@ -11,13 +11,15 @@ enum Type {
     case folder, document
 }
 
-class File {
+class File: Identifiable {
     var name: String
     var created: Date
     var last_modified: Date
     var type: Type
     
-    init(name: String = "File1", created: Date = Date.now, last_modified: Date = Date.now, type: Type = .folder) {
+    init(name: String = "File1", created: Date = Date(), last_modified: Date = Date(), type: Type = .folder) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
         self.name = name
         self.created = created
         self.last_modified = last_modified
