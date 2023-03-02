@@ -13,9 +13,6 @@
 		6A6F508D29A69E65004E9E46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F508C29A69E65004E9E46 /* ContentView.swift */; };
 		6A6F508F29A69E6D004E9E46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F508E29A69E6D004E9E46 /* Assets.xcassets */; };
 		6A6F509229A69E6D004E9E46 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A6F509129A69E6D004E9E46 /* Preview Assets.xcassets */; };
-		6A6F509C29A69E6D004E9E46 /* Drive_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F509B29A69E6D004E9E46 /* Drive_Tests.swift */; };
-		6A6F50A629A69E6E004E9E46 /* Drive_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F50A529A69E6E004E9E46 /* Drive_UITests.swift */; };
-		6A6F50A829A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F50A729A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift */; };
 		6AB3E44329AE853B00340F17 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44229AE853B00340F17 /* File.swift */; };
 		6AB3E44529AE854B00340F17 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44429AE854B00340F17 /* Folder.swift */; };
 		6AB3E44729AE855C00340F17 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44629AE855C00340F17 /* Document.swift */; };
@@ -50,10 +47,7 @@
 		6A6F508E29A69E6D004E9E46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A6F509129A69E6D004E9E46 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6A6F509729A69E6D004E9E46 /* Drive+Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive+Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A6F509B29A69E6D004E9E46 /* Drive_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_Tests.swift; sourceTree = "<group>"; };
 		6A6F50A129A69E6E004E9E46 /* Drive+UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive+UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A6F50A529A69E6E004E9E46 /* Drive_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_UITests.swift; sourceTree = "<group>"; };
-		6A6F50A729A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6AB3E44229AE853B00340F17 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		6AB3E44429AE854B00340F17 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		6AB3E44629AE855C00340F17 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -98,8 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				6A6F508929A69E65004E9E46 /* Drive+ */,
-				6A6F509A29A69E6D004E9E46 /* Drive+Tests */,
-				6A6F50A429A69E6E004E9E46 /* Drive+UITests */,
 				6A6F508829A69E65004E9E46 /* Products */,
 				BA94B1F420CD70922CBB9695 /* Pods */,
 				1536ED94C8EFC89B82E108F9 /* Frameworks */,
@@ -134,23 +126,6 @@
 				6A6F509129A69E6D004E9E46 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		6A6F509A29A69E6D004E9E46 /* Drive+Tests */ = {
-			isa = PBXGroup;
-			children = (
-				6A6F509B29A69E6D004E9E46 /* Drive_Tests.swift */,
-			);
-			path = "Drive+Tests";
-			sourceTree = "<group>";
-		};
-		6A6F50A429A69E6E004E9E46 /* Drive+UITests */ = {
-			isa = PBXGroup;
-			children = (
-				6A6F50A529A69E6E004E9E46 /* Drive_UITests.swift */,
-				6A6F50A729A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift */,
-			);
-			path = "Drive+UITests";
 			sourceTree = "<group>";
 		};
 		6AB3E44029AE851700340F17 /* Model */ = {
@@ -352,7 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A6F509C29A69E6D004E9E46 /* Drive_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,8 +334,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A6F50A629A69E6E004E9E46 /* Drive_UITests.swift in Sources */,
-				6A6F50A829A69E6E004E9E46 /* Drive_UITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
