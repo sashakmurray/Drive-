@@ -10,11 +10,6 @@ import SwiftUI
 struct FileListView: View {
     
     @Binding var file: File
-    var formatter: DateFormatter {
-        let f = DateFormatter()
-        f.dateFormat = "yyyy/MM/dd HH:mm"
-        return f
-    }
     
     var body: some View {
         ZStack {
@@ -28,7 +23,7 @@ struct FileListView: View {
                     
                     Spacer()
                     
-                    Text("Modified \(formatter.string(from: file.last_modified))")
+                    Text("Modified \(file.last_modified.formatted(date: .abbreviated, time: .shortened))")
                         .font(Fonts.small)
                         .padding([.leading, .trailing, .bottom])
                 }
