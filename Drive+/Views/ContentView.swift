@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var files: [File] = [Document(), Folder(data: [Document(), Document()]), Document()]
+//    @State var files: [File] = [Document(), Folder(content: [Document(), Document()]), Document()]
+    @State var file: Document = Document()
     
     var body: some View {
-        ScrollView {
-            ForEach($files) { file in
-                FileListView(file: file)
-            }
-        }
-        
+//        DocumentView(file: $file)
+        RepresentedMyView()
     }
 }
 
