@@ -25,10 +25,44 @@ extension String {
 struct DocumentView: View {
     
     @Binding var file: Document
-    var textView = UITextView(frame: CGRect(x: 20.0, y: 90.0, width: 250.0, height: 100.0))
     
     var body: some View {
-        Text("hello world")
+        VStack {
+            ZStack {
+                Rectangle()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 15)
+                    .foregroundColor(Color.black.opacity(0.5))
+                
+                HStack {
+                    Button {
+                    } label: {
+                        Text("<")
+                        .padding()
+                        .foregroundColor(.white)
+                        .font(Fonts.large)
+                    }
+                    Spacer()
+                    
+                    Button {
+                    } label: {
+                        Image(systemName: "person.2.fill")
+                        .foregroundColor(.white)
+                        .padding()
+                    }
+
+                    Button {
+                    } label: {
+                        Image(systemName: "gear")
+                        .foregroundColor(.white)
+                        .padding()
+                    }
+                }
+            }
+            
+            Spacer()
+            Text(file.content)
+                .frame(alignment: .leading)
+        }
     }
 }
 

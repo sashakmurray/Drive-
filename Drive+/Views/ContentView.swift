@@ -12,8 +12,8 @@ struct ContentView: View {
     @State var file: Document = Document()
     
     var body: some View {
-//        DocumentView(file: $file)
-        RepresentedMyView()
+        DocumentView(file: $file)
+//        RepresentedMyView()
     }
 }
 
