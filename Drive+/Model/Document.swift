@@ -8,9 +8,10 @@
 import Foundation
 
 class Document: File {
-    var data: String?
+    var content: String
     
-    init(data: String = "hello") {
-        self.data = data
+    init(name: String = "File1", created: Date = Date.now, last_modified: Date = Date.now, type: Type = .document, content: String = "hello") {
+        self.content = content
+        super.init(name: name, created: created, last_modified: last_modified, type: type)
     }
 }
