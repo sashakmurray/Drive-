@@ -8,10 +8,10 @@
 import Foundation
 
 class Document: File {
-    var content: String
+    var content: NSMutableAttributedString
     
     init(name: String = "File1", created: Date = Date.now, last_modified: Date = Date.now, type: Type = .document, content: String = "hello") {
-        self.content = content
+        self.content = NSMutableAttributedString(string: content)
         super.init(name: name, created: created, last_modified: last_modified, type: type)
     }
 }
