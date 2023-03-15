@@ -59,9 +59,10 @@ struct DocumentView: View {
                 }
             }
             
-            Spacer()
             Text(file.content)
                 .frame(alignment: .leading)
+                .padding(30)
+            Spacer()
         }
     }
 }
