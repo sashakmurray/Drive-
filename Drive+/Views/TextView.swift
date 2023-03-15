@@ -14,11 +14,13 @@ struct TextView: UIViewRepresentable {
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
         view.attributedText = text
+        view.textColor = UIColor.cyan
         return view
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.attributedText = text
+        uiView.font = UIFonts.medium
         print(text)
     }
 

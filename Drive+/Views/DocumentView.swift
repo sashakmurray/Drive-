@@ -31,7 +31,7 @@ struct DocumentView: View {
             ZStack {
                 Rectangle()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 15)
-                    .foregroundColor(Color.black.opacity(0.5))
+                    .foregroundColor(Color.black.opacity(0.4))
                 
                 HStack {
                     Button {
@@ -59,9 +59,12 @@ struct DocumentView: View {
                 }
             }
             
-            Text(file.content)
-                .frame(alignment: .leading)
+//            Text(file.content)
+//                .frame(alignment: .leading)
+//                .padding(30)
+            TextView(text: $file.content)
                 .padding(30)
+            
             Spacer()
         }
     }
