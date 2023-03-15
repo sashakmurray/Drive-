@@ -1,5 +1,5 @@
 //
-//  Test2.swift
+//  TextView.swift
 //  Drive+
 //
 //  Created by Sasha Murray (student LM) on 3/9/23.
@@ -7,18 +7,6 @@
 
 import SwiftUI
 import UIKit
-
-class ViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        let view = UIView()
-        let label = UILabel()
-        label.text = "Text"
-        
-        view.addSubview(label)
-        self.view = view
-    }
-}
 
 struct TextView: UIViewRepresentable {
     @Binding var text: NSMutableAttributedString
