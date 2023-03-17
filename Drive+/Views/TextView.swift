@@ -21,13 +21,18 @@ struct TextView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
-//        self.setDiffColor(color: .red, range: NSRange(location: 2, length: 3))
         uiView.attributedText = text
         uiView.font = UIFonts.medium
     }
 
     func setDiffColor(color: UIColor) {
         self.text.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: self.view.selectedRange)
+        self.view.attributedText = self.text
+        self.view.font = UIFonts.medium
+    }
+    
+    func setItalics() {
+        self.text.addAttribute(NSAttributedString.Key.obliqueness, value: 0.3, range: self.view.selectedRange)
         self.view.attributedText = self.text
         self.view.font = UIFonts.medium
     }
