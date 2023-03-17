@@ -25,6 +25,15 @@ extension String {
 struct DocumentView: View {
     
     @Binding var file: Document
+    @State var toolbar: Bool
+    var textView: TextView
+    
+    init(file: Binding<Document>) {
+        self._file = file
+        self.toolbar = false
+        self.textView = TextView(text: file.content)
+    }
+    
     
     var body: some View {
         VStack {
@@ -44,6 +53,14 @@ struct DocumentView: View {
                     Spacer()
                     
                     Button {
+                        toolbar = true
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
+                    Button {
                     } label: {
                         Image(systemName: "person.2.fill")
                         .foregroundColor(.white)
@@ -59,10 +76,33 @@ struct DocumentView: View {
                 }
             }
             
-//            Text(file.content)
-//                .frame(alignment: .leading)
+            if toolbar {
+                ZStack {
+                    Rectangle()
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 15)
+                        .foregroundColor(Color.black.opacity(0.4))
+                    HStack {
+                        Image(systemName: "italic")
+                            .padding()
+                        
+                        Image(systemName: "underline")
+                            .padding()
+                        
+                        Button {
+                            self.textView.setDiffColor(color: .red)
+                            
+                        } label: {
+                        Image(systemName: "textformat.size")
+                            .padding()
+                        }
+                    }
+                }
+            }
+            
+            
+//            TextView(text: $file.content)
 //                .padding(30)
-            TextView(text: $file.content)
+            textView
                 .padding(30)
             
             Spacer()
