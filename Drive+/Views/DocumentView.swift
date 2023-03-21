@@ -22,7 +22,7 @@ struct DocumentView: View {
         VStack {
             ZStack {
                 Rectangle()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 7)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 8)
                     .foregroundColor(Color.black.opacity(0.4))
                 
                 VStack {
@@ -74,7 +74,7 @@ struct DocumentView: View {
                         } label: {
                         Image(systemName: "textformat.size")
                                 .foregroundColor(.white)
-                            .padding()
+                                .padding()
                         }
                     }
                 }

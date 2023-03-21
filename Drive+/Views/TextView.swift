@@ -32,7 +32,13 @@ struct TextView: UIViewRepresentable {
     }
     
     func setItalics() {
-        self.text.addAttribute(NSAttributedString.Key.obliqueness, value: 0.3, range: self.view.selectedRange)
+        var value = 0.3
+        for attr in self.text.attributes(at: self.view.selectedRange.lowerBound, effectiveRange: nil) {
+            if attr.key.rawValue == "NSObliqueness" && attr.value as! Double == 0.3 {
+                value = 0
+            }
+        }
+        self.text.addAttribute(NSAttributedString.Key.obliqueness, value: value, range: self.view.selectedRange)
         self.view.attributedText = self.text
         self.view.font = UIFonts.medium
     }
