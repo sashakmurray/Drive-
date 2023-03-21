@@ -42,4 +42,16 @@ struct TextView: UIViewRepresentable {
         self.view.attributedText = self.text
         self.view.font = UIFonts.medium
     }
+    
+    func setUnderline() {
+        var value = NSUnderlineStyle.single.rawValue
+        for attr in self.text.attributes(at: self.view.selectedRange.lowerBound, effectiveRange: nil) {
+            if attr.key.rawValue == "NSUnderline" && attr.value as! Int == NSUnderlineStyle.single.rawValue {
+                value = 0
+            }
+        }
+        self.text.addAttribute(NSAttributedString.Key.underlineStyle, value: value, range: self.view.selectedRange)
+        self.view.attributedText = self.text
+        self.view.font = UIFonts.medium
+    }
 }

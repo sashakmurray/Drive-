@@ -66,8 +66,13 @@ struct DocumentView: View {
                             .padding()
                         }
                         
-                        Image(systemName: "underline")
+                        Button {
+                            self.textView.setUnderline()
+                        } label: {
+                            Image(systemName: "underline")
+                                .foregroundColor(.white)
                             .padding()
+                        }
                         
                         Button {
                             self.textView.setDiffColor(color: .red)
