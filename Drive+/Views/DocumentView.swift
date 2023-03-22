@@ -76,21 +76,26 @@ struct DocumentView: View {
                             .padding()
                         }
                         
+                        ColorPicker("Color!", selection: $textColor)
+                            .foregroundColor(textColor)
+                        
                         Button {
                             self.textView.setDiffColor(color: UIColor(textColor))
                         } label: {
-                        Image(systemName: "textformat.size")
-                                .foregroundColor(.white)
+                            Image(systemName: "textformat.size")
+                                .foregroundColor(textColor)
                                 .padding()
                         }
                         
-                        Picker("Color: ", selection: $textColor) {
-                            ForEach(colors, id: \.self) { color in
-                                Text(color.description.capitalized)
-                                    .padding()
-                                    .background(textColor)
-                            }
-                        }.foregroundColor(textColor)
+                        Button {
+                            self.textView.setHighlight(color: UIColor(textColor))
+                        } label: {
+                            Image(systemName: "paintbrush.fill")
+                                .foregroundColor(textColor)
+                                .padding()
+                        }
+                        Spacer()
+                        
                     }
                 }
             }
