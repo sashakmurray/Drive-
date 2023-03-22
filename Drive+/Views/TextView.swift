@@ -31,6 +31,12 @@ struct TextView: UIViewRepresentable {
         self.view.font = UIFonts.medium
     }
     
+    func setHighlight(color: UIColor) {
+        self.text.addAttribute(NSAttributedString.Key.backgroundColor, value: color, range: self.view.selectedRange)
+        self.view.attributedText = self.text
+        self.view.font = UIFonts.medium
+    }
+    
     func setItalics() {
         var value = 0.3
         for attr in self.text.attributes(at: self.view.selectedRange.lowerBound, effectiveRange: nil) {
