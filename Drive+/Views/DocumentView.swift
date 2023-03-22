@@ -10,6 +10,8 @@ import SwiftUI
 struct DocumentView: View {
     
     @Binding var file: Document
+    @State var textColor = Color.black
+    let colors: [Color] = [.black, .red, .green, .blue, .purple]
     var textView: TextView
     
     init(file: Binding<Document>) {
@@ -75,12 +77,20 @@ struct DocumentView: View {
                         }
                         
                         Button {
-                            self.textView.setDiffColor(color: .red)
+                            self.textView.setDiffColor(color: UIColor(textColor))
                         } label: {
                         Image(systemName: "textformat.size")
                                 .foregroundColor(.white)
                                 .padding()
                         }
+                        
+                        Picker("Color: ", selection: $textColor) {
+                            ForEach(colors, id: \.self) { color in
+                                Text(color.description.capitalized)
+                                    .padding()
+                                    .background(textColor)
+                            }
+                        }.foregroundColor(textColor)
                     }
                 }
             }
