@@ -13,6 +13,7 @@ struct DocumentView: View {
     @State var textColor = Color.black
     let colors: [Color] = [.black, .red, .green, .blue, .purple]
     var textView: TextView
+    @State var editing = true
     
     init(file: Binding<Document>) {
         self._file = file
@@ -22,43 +23,42 @@ struct DocumentView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Rectangle()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 8)
-                    .foregroundColor(Color.black.opacity(0.4))
-                
-                VStack {
-                    HStack {
-                        Button {
-                        } label: {
-                            Text("<")
-                            .padding()
-                            .foregroundColor(.white)
-                            .font(Fonts.large)
-                        }
-                        Spacer()
-                        
-                        Button {
-                        } label: {
-                            Image(systemName: "square.and.pencil")
-                                .foregroundColor(.white)
-                                .padding()
-                        }
-                        
-                        Button {
-                        } label: {
-                            Image(systemName: "person.2.fill")
-                            .foregroundColor(.white)
-                            .padding()
-                        }
-
-                        Button {
-                        } label: {
-                            Image(systemName: "gear")
-                            .foregroundColor(.white)
-                            .padding()
-                        }
+            VStack {
+                HStack {
+                    Button {
+                    } label: {
+                        Text("<")
+                        .padding()
+                        .foregroundColor(.white)
+                        .font(Fonts.large)
                     }
+                    Spacer()
+                    
+                    Button {
+                        editing.toggle()
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "person.2.fill")
+                        .foregroundColor(.white)
+                        .padding()
+                    }
+
+                    Button {
+                    } label: {
+                        Image(systemName: "gear")
+                        .foregroundColor(.white)
+                        .padding()
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.black.opacity(0.4))
+                if editing {
                     HStack {
                         Button {
                             self.textView.setItalics()
@@ -73,16 +73,16 @@ struct DocumentView: View {
                         } label: {
                             Image(systemName: "underline")
                                 .foregroundColor(.white)
-                            .padding()
+                                .padding()
                         }
                         
-                        ColorPicker("Color!", selection: $textColor)
+                        ColorPicker("", selection: $textColor)
                             .foregroundColor(textColor)
                         
                         Button {
                             self.textView.setDiffColor(color: UIColor(textColor))
                         } label: {
-                            Image(systemName: "textformat.size")
+                            Image(systemName: "a")
                                 .foregroundColor(textColor)
                                 .padding()
                         }
@@ -97,6 +97,9 @@ struct DocumentView: View {
                         Spacer()
                         
                     }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.black.opacity(0.25))
+                        .offset(y: -8)
                 }
             }
             
