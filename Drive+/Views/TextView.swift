@@ -14,9 +14,15 @@ struct TextView: UIViewRepresentable {
     @State var range = NSRange(location: 0, length: 0)
 
     func makeUIView(context: Context) -> UITextView {
-        view.attributedText = text
-        view.textColor = UIColor.cyan
         view.font = UIFonts.medium
+        view.attributedText = text
+
+        if let URL = Bundle.main.url(forResource: "hello", withExtension: "rtf") {
+            if let string = try? NSAttributedString(url: URL, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
+                view.attributedText = string.mutableCopy() as! NSMutableAttributedString
+            }
+        }
+        print("\(view.attributedText)")
         return view
     }
 
@@ -59,5 +65,25 @@ struct TextView: UIViewRepresentable {
         self.text.addAttribute(NSAttributedString.Key.underlineStyle, value: value, range: self.view.selectedRange)
         self.view.attributedText = self.text
         self.view.font = UIFonts.medium
+    }
+    
+    func checkAttribute(key: NSAttributedString.Key) -> Bool {
+        for attr in self.text.attributes(at: self.view.selectedRange.lowerBound, longestEffectiveRange: nil, in: self.view.selectedRange) {
+            if attr.key == key {
+                switch(key.rawValue) {
+                case "NSUnderline":
+                    return attr.value as! Int == NSUnderlineStyle.single.rawValue
+                case "NSObliqueness":
+                    return attr.value as! Double == 0.3
+                case "backgroundColor":
+                    return true
+                case "foregroundColor":
+                    return true
+                default:
+                    return false
+                }
+            }
+        }
+        return false
     }
 }

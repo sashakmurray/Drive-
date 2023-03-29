@@ -43,7 +43,6 @@ struct DocumentView: View {
                     }
                     
                     Button {
-                        
                     } label: {
                         Image(systemName: "person.2.fill")
                         .foregroundColor(.white)
@@ -63,9 +62,16 @@ struct DocumentView: View {
                         Button {
                             self.textView.setItalics()
                         } label: {
-                            Image(systemName: "italic")
-                            .foregroundColor(.white)
-                            .padding()
+                            if self.textView.checkAttribute(key: NSAttributedString.Key.obliqueness) {
+                                Image(systemName: "italic")
+                                    .foregroundColor(.black)
+                                    .padding()
+                                    .background(Color.black.opacity(0.3))
+                            } else {
+                                Image(systemName: "italic")
+                                    .foregroundColor(.white)
+                                    .padding()
+                            }
                         }
                         
                         Button {
