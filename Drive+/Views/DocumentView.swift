@@ -32,6 +32,12 @@ struct DocumentView: View {
                         .foregroundColor(.white)
                         .font(Fonts.large)
                     }
+                    
+                    TextField("", text: $file.name)
+                        .padding()
+                        .foregroundColor(.white)
+                        .font(Fonts.medium)
+                    
                     Spacer()
                     
                     Button {
