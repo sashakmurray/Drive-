@@ -10,14 +10,16 @@ import SwiftUI
 struct DocumentView: View {
     
     @Binding var file: Document
+    @Binding var data: FileFetcher
     @State var textColor = Color.black
     let colors: [Color] = [.black, .red, .green, .blue, .purple]
     var textView: TextView
     @State var editing = true
     
-    init(file: Binding<Document>) {
-        self._file = file
+    init(file: Binding<Document>, data: Binding<FileFetcher>) {
+        self._data = data
         self.textView = TextView(text: file.content)
+        self._file = file
     }
     
     
@@ -37,6 +39,9 @@ struct DocumentView: View {
                         .padding()
                         .foregroundColor(.white)
                         .font(Fonts.medium)
+                        .task {
+                            await data.getData()
+                        }
                     
                     Spacer()
                     
@@ -117,6 +122,9 @@ struct DocumentView: View {
             
             textView
                 .padding(30)
+                .task {
+                    await data.getData()
+                }
             
             Spacer()
         }
@@ -125,6 +133,6 @@ struct DocumentView: View {
 
 struct DocumentView_Previews: PreviewProvider {
     static var previews: some View {
-        DocumentView(file: Binding.constant(Document()))
+        DocumentView(file: Binding.constant(Document()), data: Binding.constant(FileFetcher()))
     }
 }

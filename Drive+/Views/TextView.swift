@@ -11,18 +11,38 @@ import UIKit
 struct TextView: UIViewRepresentable {
     @Binding var text: NSMutableAttributedString
     let view = UITextView()
-    @State var range = NSRange(location: 0, length: 0)
+    @State var fonts: [Int: Font]
+    
+    init(text: Binding<NSMutableAttributedString>) {
+        self._text = text
+        self.fonts = [:]
+        
+//        if let URL = Bundle.main.url(forResource: "hello", withExtension: "rtf") {
+//            if let string = try? NSAttributedString(url: URL, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
+////                view.attributedText = string
+//                self.text = string.mutableCopy() as! NSMutableAttributedString
+//                for i in 0..<string.length {
+//                    print(i)
+//                    for attr in self.text.attributes(at: i, effectiveRange: nil) {
+//                        if attr.key.rawValue == "NSFont" {
+//                            self.fonts[i] = Font(attr.value as! CTFont)
+//                            self.text.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
+//                            print(attr.value)
+//                        }
+//                    }
+//                    print()
+//                }
+//
+//            }
+//        }
+//        print(self.text)
+    }
 
     func makeUIView(context: Context) -> UITextView {
         view.font = UIFonts.medium
         view.attributedText = text
-
-        if let URL = Bundle.main.url(forResource: "hello", withExtension: "rtf") {
-            if let string = try? NSAttributedString(url: URL, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
-                view.attributedText = string.mutableCopy() as! NSMutableAttributedString
-            }
-        }
-        print("\(view.attributedText)")
+//        print(view.attributedText)
+        self.text = view.attributedText.mutableCopy() as! NSMutableAttributedString
         return view
     }
 
