@@ -18,7 +18,7 @@ struct DocumentView: View {
     
     init(file: Binding<Document>, data: Binding<FileFetcher>) {
         self._data = data
-        self.textView = TextView(text: file.content)
+        self.textView = TextView(text: data.file.content)
         self._file = file
     }
     

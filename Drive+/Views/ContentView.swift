@@ -13,9 +13,6 @@ struct ContentView: View {
     
     var body: some View {
         DocumentView(file: $file, data: $fileFetcher)
-            .task {
-                await fileFetcher.getData()
-            }
     }
 }
 

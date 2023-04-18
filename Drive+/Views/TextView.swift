@@ -27,15 +27,11 @@ struct TextView: UIViewRepresentable {
 //                        if attr.key.rawValue == "NSFont" {
 //                            self.fonts[i] = Font(attr.value as! CTFont)
 //                            self.text.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
-//                            print(attr.value)
 //                        }
 //                    }
-//                    print()
 //                }
-//
 //            }
 //        }
-//        print(self.text)
     }
 
     func makeUIView(context: Context) -> UITextView {

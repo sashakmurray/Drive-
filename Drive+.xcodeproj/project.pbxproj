@@ -19,6 +19,7 @@
 		6AB3E44329AE853B00340F17 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44229AE853B00340F17 /* File.swift */; };
 		6AB3E44529AE854B00340F17 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44429AE854B00340F17 /* Folder.swift */; };
 		6AB3E44729AE855C00340F17 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3E44629AE855C00340F17 /* Document.swift */; };
+		6AC0C95229EDC2A9000E97D8 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 6AC0C95129EDC2A9000E97D8 /* test.json */; };
 		6ADE554629D4B40C005949B3 /* hello.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6ADE554529D4B40C005949B3 /* hello.rtf */; };
 		C7E30F3F9F3E5A9835016BFA /* Pods_Drive_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191467162B044D0290A38ED5 /* Pods_Drive_.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		6AB3E44229AE853B00340F17 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		6AB3E44429AE854B00340F17 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		6AB3E44629AE855C00340F17 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		6AC0C95129EDC2A9000E97D8 /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		6ADE554529D4B40C005949B3 /* hello.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = hello.rtf; sourceTree = "<group>"; };
 		B78DDC28B97062F5F3B145AE /* Pods-Drive+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drive+.debug.xcconfig"; path = "Target Support Files/Pods-Drive+/Pods-Drive+.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +146,7 @@
 				6AB3E44629AE855C00340F17 /* Document.swift */,
 				6A0CE6BB29B10FA800889E54 /* Constants.swift */,
 				6A4724D929D742CC0069A349 /* FileFetcher.swift */,
+				6AC0C95129EDC2A9000E97D8 /* test.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A6F509229A69E6D004E9E46 /* Preview Assets.xcassets in Resources */,
+				6AC0C95229EDC2A9000E97D8 /* test.json in Resources */,
 				6ADE554629D4B40C005949B3 /* hello.rtf in Resources */,
 				6A6F508F29A69E6D004E9E46 /* Assets.xcassets in Resources */,
 			);
