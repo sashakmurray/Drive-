@@ -11,11 +11,9 @@ import UIKit
 struct TextView: UIViewRepresentable {
     @Binding var text: NSMutableAttributedString
     let view = UITextView()
-    @State var fonts: [Int: Font]
     
     init(text: Binding<NSMutableAttributedString>) {
         self._text = text
-        self.fonts = [:]
         
 //        if let URL = Bundle.main.url(forResource: "hello", withExtension: "rtf") {
 //            if let string = try? NSAttributedString(url: URL, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
@@ -35,7 +33,6 @@ struct TextView: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> UITextView {
-        view.font = UIFonts.medium
         view.attributedText = text
 //        print(view.attributedText)
         self.text = view.attributedText.mutableCopy() as! NSMutableAttributedString
@@ -44,19 +41,16 @@ struct TextView: UIViewRepresentable {
 
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.attributedText = text
-        uiView.font = UIFonts.medium
     }
 
     func setDiffColor(color: UIColor) {
         self.text.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: self.view.selectedRange)
         self.view.attributedText = self.text
-        self.view.font = UIFonts.medium
     }
     
     func setHighlight(color: UIColor) {
         self.text.addAttribute(NSAttributedString.Key.backgroundColor, value: color, range: self.view.selectedRange)
         self.view.attributedText = self.text
-        self.view.font = UIFonts.medium
     }
     
     func setItalics() {
@@ -68,7 +62,6 @@ struct TextView: UIViewRepresentable {
         }
         self.text.addAttribute(NSAttributedString.Key.obliqueness, value: value, range: self.view.selectedRange)
         self.view.attributedText = self.text
-        self.view.font = UIFonts.medium
     }
     
     func setUnderline() {
@@ -80,7 +73,6 @@ struct TextView: UIViewRepresentable {
         }
         self.text.addAttribute(NSAttributedString.Key.underlineStyle, value: value, range: self.view.selectedRange)
         self.view.attributedText = self.text
-        self.view.font = UIFonts.medium
     }
     
     func checkAttribute(key: NSAttributedString.Key) -> Bool {

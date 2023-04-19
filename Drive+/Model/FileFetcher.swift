@@ -18,7 +18,7 @@ class FileFetcher: ObservableObject {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 response = try JSONDecoder().decode(Response.self, from: data)
                 let text = response.data.decodeUrl() ?? ""
-                file = Document(name: response.name, content: response.data)
+                file = Document(name: response.name, content: text)
                 
                 if let string = try? NSAttributedString(data: text.data(using: .utf8) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
                     file.content = string.mutableCopy() as! NSMutableAttributedString
