@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>941191050070-6a4vc22mgt4c0qv08sv1loe4abujhp55.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.941191050070-6a4vc22mgt4c0qv08sv1loe4abujhp55</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBP1Ahj_V73kV5ftbmYvQ3tDh5CitAkpF8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>941191050070</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>SciolySlugs.DrivePlus</string>
+	<key>PROJECT_ID</key>
+	<string>driveplus-379219</string>
+	<key>STORAGE_BUCKET</key>
+	<string>driveplus-379219.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:941191050070:ios:3ea98eb4cb9a67f7345cf7</string>
+</dict>
+</plist>
