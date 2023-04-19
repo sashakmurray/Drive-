@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct DocumentView: View {
-    
     @Binding var file: Document
     @Binding var data: FileFetcher
     @State var textColor = Color.black
     let colors: [Color] = [.black, .red, .green, .blue, .purple]
     var textView: TextView
     @State var editing = true
+    let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
     
     init(file: Binding<Document>, data: Binding<FileFetcher>) {
         self._data = data
@@ -28,7 +28,6 @@ struct DocumentView: View {
             VStack {
                 HStack {
                     Button {
-                        self.textView.pushData()
                     } label: {
                         Text("<")
                         .padding()
@@ -128,6 +127,9 @@ struct DocumentView: View {
                 .task {
                     await data.getData()
                     textView.view.attributedText = data.file.content
+                }
+                .onReceive(timer) { time in
+                    print(textView.pushData())
                 }
             
             Spacer()
