@@ -14,32 +14,15 @@ struct TextView: UIViewRepresentable {
     
     init(text: Binding<NSMutableAttributedString>) {
         self._text = text
-        
-//        if let URL = Bundle.main.url(forResource: "hello", withExtension: "rtf") {
-//            if let string = try? NSAttributedString(url: URL, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
-////                view.attributedText = string
-//                self.text = string.mutableCopy() as! NSMutableAttributedString
-//                for i in 0..<string.length {
-//                    print(i)
-//                    for attr in self.text.attributes(at: i, effectiveRange: nil) {
-//                        if attr.key.rawValue == "NSFont" {
-//                            self.fonts[i] = Font(attr.value as! CTFont)
-//                            self.text.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
 
     func makeUIView(context: Context) -> UITextView {
         view.attributedText = text
-//        print(view.attributedText)
-        self.text = view.attributedText.mutableCopy() as! NSMutableAttributedString
         return view
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
+        print("hewwo")
         uiView.attributedText = text
     }
 
@@ -75,23 +58,7 @@ struct TextView: UIViewRepresentable {
         self.view.attributedText = self.text
     }
     
-    func checkAttribute(key: NSAttributedString.Key) -> Bool {
-        for attr in self.text.attributes(at: self.view.selectedRange.lowerBound, longestEffectiveRange: nil, in: self.view.selectedRange) {
-            if attr.key == key {
-                switch(key.rawValue) {
-                case "NSUnderline":
-                    return attr.value as! Int == NSUnderlineStyle.single.rawValue
-                case "NSObliqueness":
-                    return attr.value as! Double == 0.3
-                case "backgroundColor":
-                    return true
-                case "foregroundColor":
-                    return true
-                default:
-                    return false
-                }
-            }
-        }
-        return false
+    func pushData() {
+        
     }
 }

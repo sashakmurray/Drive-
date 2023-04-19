@@ -70,25 +70,27 @@ struct DocumentView: View {
                     .background(Color.black.opacity(0.4))
                 if editing {
                     HStack {
-                        Button {
+                        
+                       Button {
                             self.textView.setItalics()
                         } label: {
-                            if self.textView.checkAttribute(key: NSAttributedString.Key.obliqueness) {
-                                Image(systemName: "italic")
-                                    .foregroundColor(.black)
-                                    .padding()
-                                    .background(Color.black.opacity(0.3))
-                            } else {
-                                Image(systemName: "italic")
-                                    .foregroundColor(.white)
-                                    .padding()
-                            }
+                            Image(systemName: "italic")
+                                .foregroundColor(.white)
+                                .padding()
                         }
                         
                         Button {
                             self.textView.setUnderline()
                         } label: {
                             Image(systemName: "underline")
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "bold")
                                 .foregroundColor(.white)
                                 .padding()
                         }
