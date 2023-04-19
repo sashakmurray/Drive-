@@ -28,6 +28,7 @@ struct DocumentView: View {
             VStack {
                 HStack {
                     Button {
+                        self.textView.pushData()
                     } label: {
                         Text("<")
                         .padding()
