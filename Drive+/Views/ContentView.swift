@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         switch viewModel.state {
-            case .signedIn: DocumentView(file: $file, data: $fileFetcher)
+            case .signedIn: ThumbnailListView()
             case .signedOut: LoginView()
         }
         

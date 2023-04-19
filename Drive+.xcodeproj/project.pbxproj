@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A0CE6BA29B10E3100889E54 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CE6B929B10E3100889E54 /* FileListView.swift */; };
 		6A0CE6BC29B10FA800889E54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CE6BB29B10FA800889E54 /* Constants.swift */; };
 		6A0CE6C229B6747D00889E54 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CE6C129B6747D00889E54 /* DocumentView.swift */; };
 		6A4724DA29D742CC0069A349 /* FileFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4724D929D742CC0069A349 /* FileFetcher.swift */; };
@@ -23,6 +22,9 @@
 		BBA5F71629F00E3700EA26FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBA5F71529F00E3700EA26FB /* GoogleService-Info.plist */; };
 		BBA5F71F29F01F3C00EA26FB /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F71E29F01F3C00EA26FB /* AuthenticationViewModel.swift */; };
 		BBA5F72329F0203700EA26FB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F72229F0203700EA26FB /* LoginView.swift */; };
+		BBA5F72529F04C4E00EA26FB /* ThumbnailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F72429F04C4D00EA26FB /* ThumbnailListView.swift */; };
+		BBA5F72729F04C7100EA26FB /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F72629F04C7100EA26FB /* ThumbnailView.swift */; };
+		BBA5F72929F04F7A00EA26FB /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA5F72829F04F7A00EA26FB /* FileView.swift */; };
 		C7E30F3F9F3E5A9835016BFA /* Pods_Drive_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191467162B044D0290A38ED5 /* Pods_Drive_.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +48,6 @@
 /* Begin PBXFileReference section */
 		191467162B044D0290A38ED5 /* Pods_Drive_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drive_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E1D0DDFEBB88BC6AEECC8E /* Pods-Drive+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drive+.release.xcconfig"; path = "Target Support Files/Pods-Drive+/Pods-Drive+.release.xcconfig"; sourceTree = "<group>"; };
-		6A0CE6B929B10E3100889E54 /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
 		6A0CE6BB29B10FA800889E54 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6A0CE6C129B6747D00889E54 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		6A4724D929D742CC0069A349 /* FileFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFetcher.swift; sourceTree = "<group>"; };
@@ -67,6 +68,9 @@
 		BBA5F71729F00EFD00EA26FB /* Drive--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drive--Info.plist"; sourceTree = SOURCE_ROOT; };
 		BBA5F71E29F01F3C00EA26FB /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		BBA5F72229F0203700EA26FB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BBA5F72429F04C4D00EA26FB /* ThumbnailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailListView.swift; sourceTree = "<group>"; };
+		BBA5F72629F04C7100EA26FB /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
+		BBA5F72829F04F7A00EA26FB /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +168,10 @@
 			children = (
 				BBA5F72229F0203700EA26FB /* LoginView.swift */,
 				6A6F508C29A69E65004E9E46 /* ContentView.swift */,
-				6A0CE6B929B10E3100889E54 /* FileListView.swift */,
 				6A0CE6C129B6747D00889E54 /* DocumentView.swift */,
+				BBA5F72429F04C4D00EA26FB /* ThumbnailListView.swift */,
+				BBA5F72829F04F7A00EA26FB /* FileView.swift */,
+				BBA5F72629F04C7100EA26FB /* ThumbnailView.swift */,
 				6A52E00629C227AE00757F41 /* TextView.swift */,
 			);
 			path = Views;
@@ -358,14 +364,16 @@
 			files = (
 				6A6F508D29A69E65004E9E46 /* ContentView.swift in Sources */,
 				6AB3E44329AE853B00340F17 /* File.swift in Sources */,
-				6A0CE6BA29B10E3100889E54 /* FileListView.swift in Sources */,
 				6A6F508B29A69E65004E9E46 /* Drive_App.swift in Sources */,
 				BBA5F71F29F01F3C00EA26FB /* AuthenticationViewModel.swift in Sources */,
+				BBA5F72929F04F7A00EA26FB /* FileView.swift in Sources */,
 				6A0CE6BC29B10FA800889E54 /* Constants.swift in Sources */,
+				BBA5F72729F04C7100EA26FB /* ThumbnailView.swift in Sources */,
 				6AB3E44529AE854B00340F17 /* Folder.swift in Sources */,
 				6A52E00729C227AE00757F41 /* TextView.swift in Sources */,
 				6AB3E44729AE855C00340F17 /* Document.swift in Sources */,
 				BBA5F72329F0203700EA26FB /* LoginView.swift in Sources */,
+				BBA5F72529F04C4E00EA26FB /* ThumbnailListView.swift in Sources */,
 				6A0CE6C229B6747D00889E54 /* DocumentView.swift in Sources */,
 				6A4724DA29D742CC0069A349 /* FileFetcher.swift in Sources */,
 			);

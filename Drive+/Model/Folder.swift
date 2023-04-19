@@ -10,8 +10,8 @@ import Foundation
 class Folder: File, ObservableObject {
     var content: [File]
     
-    init(name: String = "File1", created: Date = Date.now, last_modified: Date = Date.now, type: Type = .folder, content: [File] = []) {
+    init(name: String = "File1", created: Date = Date.now, last_modified: Date = Date.now, content: [File] = []) {
         self.content = content
-        super.init(name: name, created: created, last_modified: last_modified, type: type)
+        super.init(name: name, created: created, last_modified: last_modified, mime_type: "application/vnd.google-apps.folder")
     }
 }
