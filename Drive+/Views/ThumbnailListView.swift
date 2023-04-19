@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThumbnailListView: View {
-    @State var folder: Folder = Folder()
+    @State var folder: Folder = Folder(content: [File()])
     @State var fileFetcher = FileFetcher()
     
     var body: some View {
