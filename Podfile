@@ -6,5 +6,9 @@ target 'Drive+' do
   use_frameworks!
 
   # Pods for Drive+
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'GoogleSignIn'
+  pod 'GoogleSignInSwiftSupport'
 
 end
