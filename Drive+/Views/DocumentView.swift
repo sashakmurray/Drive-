@@ -124,6 +124,8 @@ struct DocumentView: View {
                 .padding(30)
                 .task {
                     await data.getData()
+                    print("hellooo")
+                    textView.view.attributedText = data.file.content
                 }
             
             Spacer()

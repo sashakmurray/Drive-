@@ -13,29 +13,25 @@ class FileFetcher: ObservableObject {
     @Published var file: Document = Document()
     
     func getData() async {
-
         if let path = Bundle.main.path(forResource: "test", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 response = try JSONDecoder().decode(Response.self, from: data)
-                response.data = response.data.decodeUrl() ?? ""
-                if let string = try? NSAttributedString(data: response.data.data(using: .utf8) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
-                    print(string)
+                let text = response.data.decodeUrl() ?? ""
+                file = Document(name: response.name, content: response.data)
+                
+                if let string = try? NSAttributedString(data: text.data(using: .utf8) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
+                    file.content = string.mutableCopy() as! NSMutableAttributedString
+                    for i in 0..<string.length {
+                        for attr in file.content.attributes(at: i, effectiveRange: nil) {
+                            if attr.key.rawValue == "NSFont" {
+                                file.content.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
+//                                print(attr.value as! UIFont)
+                            }
+                        }
+                    }
                 }
-
-//                let d = try file.content.data(from: .init(location: 0, length: file.content.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtf])
-//                if let string = try? NSAttributedString(data: d, options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
-//                        file.content = string.mutableCopy() as! NSMutableAttributedString
-//                        for i in 0..<string.length {
-//                            for attr in file.content.attributes(at: i, effectiveRange: nil) {
-//                                if attr.key.rawValue == "NSFont" {
-//
-//                                    file.content.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
-//                                }
-//                            }
-//                        }
-//                    }
-                file = Document(name: response.name, content: response.data.decodeUrl() ?? "")
+//                print(file.content)
               } catch {
                    print(error)
               }
