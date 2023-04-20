@@ -13,7 +13,6 @@ import GoogleSignIn
 @main
 
 
-
 struct Drive_App: App {
     @StateObject var viewModel = AuthenticationViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate

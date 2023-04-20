@@ -43,7 +43,7 @@ class File: Identifiable, ObservableObject {
     let id: UUID = UUID()
     let formatter = DateFormatter()
     
-    init(name: String = "File1", data: Any? = nil, created: Date = Date(), last_modified: Date = Date(), mime_type: String = "application/vnd.google-apps.document", file_size: Int = 0, drive_id: String = "", icon_link: String = "") {
+    init(name: String, data: Any? = nil, created: Date = Date(), last_modified: Date = Date(), mime_type: String = "application/vnd.google-apps.document", file_size: Int = 0, drive_id: String = "", icon_link: String = "") {
         
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         self.name = name
@@ -57,9 +57,9 @@ class File: Identifiable, ObservableObject {
     }
     
     func getData(metadata: FileMetadata) async {
-        name = metadata.name
-        drive_id = metadata.id
-        mime_type = metadata.mimeType
+        self.name = metadata.name
+        self.drive_id = metadata.id
+        self.mime_type = metadata.mimeType
 
         guard let url = URL(string: "https://v2.thebannana32.repl.co/api/get?id=\(drive_id)") else {return}
         do {

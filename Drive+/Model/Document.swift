@@ -11,7 +11,7 @@ import SwiftUI
 class Document: File {
     @Published var content: NSMutableAttributedString
     
-    init(name: String = "File1", created: Date = Date.now, data: String = "hello", drive_id: String = "") {
+    init(name: String, created: Date = Date.now, data: String = "hello", drive_id: String = "") {
         self.content = NSMutableAttributedString(string: data)
         super.init(name: name, created: created, mime_type: "application/vnd.google-apps.document", drive_id: drive_id)
         
@@ -31,9 +31,7 @@ class Document: File {
     }
     
     override func getData(metadata: FileMetadata) async {
-        name = metadata.name
-        drive_id = metadata.id
-        mime_type = metadata.mimeType
+        await super.getData(metadata: metadata)
         
 //        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/get?id=\(drive_id)") else {return}
 //        do {

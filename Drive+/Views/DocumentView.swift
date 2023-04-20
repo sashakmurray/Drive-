@@ -9,11 +9,10 @@ import SwiftUI
 
 struct DocumentView: View {
     
-    var document_metadata: FileMetadata
+    @Binding var document_metadata: FileMetadata
     
     var body: some View {
         Spacer()
-        Text("hi")
     }
 }
 

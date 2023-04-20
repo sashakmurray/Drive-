@@ -9,25 +9,24 @@ import Foundation
 
 class Folder: File {
     @Published var content: [FileMetadata]
-    
-    init(name: String = "File1", created: Date = Date.now, drive_id: String = "") {
-        self.content = []
+    init(name: String = "Home", created: Date = Date.now, drive_id: String = "") {
+        self.content=[]
         super.init(name: name, created: created, mime_type: "application/vnd.google-apps.folder", drive_id: drive_id)
     }
     
-    override func getData(metadata: FileMetadata) async {
-        name = metadata.name
-        drive_id = metadata.id
-        mime_type = metadata.mimeType
-        
+    override func getData(metadata: FileMetadata) async{
+        await super.getData(metadata: metadata)
+
         guard let url = URL(string: "https://v2.thebannana32.repl.co/api/folder?id=\(drive_id)") else {return}
+
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let response = try JSONDecoder().decode(FolderResponse.self, from: data)
-            content = response.files
+            self.content = response.files
         } catch {
             print(error)
         }
+        
     }
 }
 

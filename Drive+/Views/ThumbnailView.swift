@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ThumbnailView: View {
-    var file_metadata: FileMetadata
-    @ObservedObject var file: File = File()
+    @Binding var file_metadata: FileMetadata
+    @ObservedObject var file: File = File(name: "Loading")
     
     var body: some View {
         HStack{
@@ -30,7 +30,6 @@ struct ThumbnailView: View {
             
         }.task {
             await file.getData(metadata: file_metadata)
-            print(file.name)
         }
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThumbnailListView: View {
-    var folder_metadata: FileMetadata
+    @Binding var folder_metadata: FileMetadata
     @ObservedObject var folder: Folder = Folder()
     
     var body: some View {
@@ -18,13 +18,15 @@ struct ThumbnailListView: View {
                         .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
                         .opacity(0.1)
                         .cornerRadius(10)
-                    NavigationView {
-                        List(folder.content) { file_metadata in
-                            NavigationLink(destination: FileView(file_metadata: file_metadata)) {
-                                ThumbnailView(file_metadata: file_metadata)
-                            }
+                    
+                        VStack{
+                            List($folder.content) { $file_metadata in
+                                NavigationLink(destination: FileView(file_metadata: $file_metadata)) {
+                                    ThumbnailView(file_metadata: $file_metadata)
+                                }
+                            }.navigationTitle(Text(folder.name))
                         }
-                    }
+                        
             }.task{
                 await folder.getData(metadata: folder_metadata)
             }
