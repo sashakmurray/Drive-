@@ -9,7 +9,7 @@ import Foundation
 
 class Folder: File {
     @Published var content: [FileMetadata]
-    init(name: String = "Home", created: Date = Date.now, drive_id: String = "") {
+    init(name: String = "Loading", created: Date = Date.now, drive_id: String = "") {
         self.content=[]
         super.init(name: name, created: created, mime_type: "application/vnd.google-apps.folder", drive_id: drive_id)
     }
@@ -38,4 +38,6 @@ struct FileMetadata: Codable, Identifiable {
     var mimeType: String
     var id: String
     var name: String
+    var editable: Bool = false
+    private enum CodingKeys: String, CodingKey { case name, id, mimeType }
 }

@@ -9,14 +9,22 @@ import SwiftUI
 
 struct ThumbnailView: View {
     @Binding var file_metadata: FileMetadata
-    @ObservedObject var file: File = File(name: "Loading")
-    
+    @StateObject var file: File = File(name: "Loading")
+    @State var name: String = "Loading"
+
     var body: some View {
         HStack{
             VStack(alignment: .leading) {
-                Text(file.name)
+                TextField("Name", text: $name)
+                    .onSubmit {
+                        Task {
+                            print("hi")
+                            await file.rename(name: name)
+                        }
+                    }
                     .font(.custom("HelveticaNeue-Thin", size: 25))
                     .padding()
+                
                 Text(file.last_modified)
                     .font(.custom("HelveticaNeue-Thin", size: 14))
                     .padding(.leading)
@@ -30,6 +38,7 @@ struct ThumbnailView: View {
             
         }.task {
             await file.getData(metadata: file_metadata)
+            name = file.name
         }
     }
 }

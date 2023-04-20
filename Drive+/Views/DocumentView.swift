@@ -10,9 +10,12 @@ import SwiftUI
 struct DocumentView: View {
     
     @Binding var document_metadata: FileMetadata
+    @State var document: Document = Document(name: "Loading")
     
     var body: some View {
-        Spacer()
+        Spacer().task {
+            await document.getData(metadata: document_metadata)
+        }
     }
 }
 

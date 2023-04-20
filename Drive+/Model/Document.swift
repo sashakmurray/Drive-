@@ -32,16 +32,16 @@ class Document: File {
     
     override func getData(metadata: FileMetadata) async {
         await super.getData(metadata: metadata)
-        
-//        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/get?id=\(drive_id)") else {return}
+//
+//        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/export?id=\(drive_id)") else {return}
 //        do {
 //            let (data, _) = try await URLSession.shared.data(from: url)
 //            let response = try JSONDecoder().decode(FileResponse.self, from: data)
-//            created =  formatter.string(from: response.data.createdTime)
-//            last_modified =  formatter.string(from: response.data.modifiedTime)
-//            icon_link =  response.data.iconLink
 //        } catch {
 //            print(error)
 //        }
     }
+}
+
+struct DocumentResponse: Codable {
 }
