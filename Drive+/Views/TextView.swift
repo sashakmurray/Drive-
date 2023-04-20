@@ -58,14 +58,13 @@ struct TextView: UIViewRepresentable {
         self.view.attributedText = self.text
     }
     
-    func pushData() -> Data {
-        let rtfData: Data = Data()
+    func pushData() -> String {
+        var rtfData: Data = Data()
         do {
-            let rtfData = try self.text.data(from: .init(location: 0, length: self.text.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtf])
-            print(rtfData)
+            rtfData = try self.text.data(from: .init(location: 0, length: self.text.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtf])
         } catch {
             print(error)
         }
-        return rtfData
+        return String(decoding: rtfData, as: UTF8.self)
     }
 }
