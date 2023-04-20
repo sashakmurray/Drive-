@@ -122,7 +122,10 @@ struct DocumentView: View {
             await document.getData(metadata: document_metadata)
             
         }.onReceive(timer) { time in
-            textView!.text = textView!.view.attributedText
+            if let temp = textView!.view.attributedText as? NSMutableAttributedString{
+                textView!.text = temp
+            }
+            
             document.data = textView!.pushData()
             print("textview \(textView!.pushData())")
             print("document \(document.data)")
