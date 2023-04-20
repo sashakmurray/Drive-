@@ -130,6 +130,7 @@ struct DocumentView: View {
                 }
                 .onReceive(timer) { time in
                     print(textView.pushData())
+                    print()
                 }
             
             Spacer()

@@ -27,16 +27,19 @@ struct TextView: UIViewRepresentable {
     }
 
     func setDiffColor(color: UIColor) {
+        self.text = self.view.attributedText.mutableCopy() as! NSMutableAttributedString
         self.text.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: self.view.selectedRange)
         self.view.attributedText = self.text
     }
     
     func setHighlight(color: UIColor) {
+        self.text = self.view.attributedText.mutableCopy() as! NSMutableAttributedString
         self.text.addAttribute(NSAttributedString.Key.backgroundColor, value: color, range: self.view.selectedRange)
         self.view.attributedText = self.text
     }
     
     func setItalics() {
+        self.text = self.view.attributedText.mutableCopy() as! NSMutableAttributedString
         var value = 0.3
         for attr in self.text.attributes(at: self.view.selectedRange.lowerBound, effectiveRange: nil) {
             if attr.key.rawValue == "NSObliqueness" && attr.value as! Double == 0.3 {
@@ -48,6 +51,7 @@ struct TextView: UIViewRepresentable {
     }
     
     func setUnderline() {
+        self.text = self.view.attributedText.mutableCopy() as! NSMutableAttributedString
         var value = NSUnderlineStyle.single.rawValue
         for attr in self.text.attributes(at: self.view.selectedRange.lowerBound, effectiveRange: nil) {
             if attr.key.rawValue == "NSUnderline" && attr.value as! Int == NSUnderlineStyle.single.rawValue {
@@ -60,8 +64,9 @@ struct TextView: UIViewRepresentable {
     
     func pushData() -> String {
         var rtfData: Data = Data()
+        print(self.view.attributedText)
         do {
-            rtfData = try self.text.data(from: .init(location: 0, length: self.text.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtf])
+            rtfData = try self.view.attributedText.data(from: .init(location: 0, length: self.view.attributedText.length), documentAttributes: [.documentType: NSAttributedString.DocumentType.rtf])
         } catch {
             print(error)
         }
