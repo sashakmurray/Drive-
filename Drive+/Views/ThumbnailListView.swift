@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ThumbnailListView: View {
-    @State var folder: Folder = Folder(content: [File()])
-    @State var fileFetcher = FileFetcher()
+    @State var folder: Folder = Folder(drive_id: "root")
     
     var body: some View {
         ZStack {
@@ -17,19 +16,17 @@ struct ThumbnailListView: View {
                 .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
                 .opacity(0.1)
                 .cornerRadius(10)
-            VStack{
-                ForEach($folder.content) { $file in
-                    NavigationLink(destination: FileView(file: $file)){
-                        ThumbnailView(file: $file).foregroundColor(.black)
-                            .padding(.leading, 5)
-                            .padding(.bottom, 2)
-                            .padding()
+                NavigationView {
+                    List($folder.content) { $file in
+                        NavigationLink(destination: FileView(file: $file)) {
+                            ThumbnailView(file: $file)
+                        }
                     }
                 }
-            }
         }
     }
 }
+
 //
 //struct ThumbnailListView_Previews: PreviewProvider {
 //    static var previews: some View {

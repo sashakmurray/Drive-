@@ -13,10 +13,11 @@ struct ContentView: View {
     @State var fileFetcher = FileFetcher()
     
     var body: some View {
-        switch viewModel.state {
-            case .signedIn: ThumbnailListView()
-            case .signedOut: LoginView()
-        }
+//        switch viewModel.state {
+//            case .signedIn: ThumbnailListView()
+//            case .signedOut: LoginView()
+//        }
+        ThumbnailListView()
         
     }
 }

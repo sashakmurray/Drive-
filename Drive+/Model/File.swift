@@ -18,6 +18,7 @@ class File: Identifiable {
     var last_modified: String
     var mime_type: String
     var file_size: Int
+    let id: UUID = UUID()
     
     init(name: String = "File1", data: Any? = nil, created: Date = Date(), last_modified: Date = Date(), mime_type: String = "application/vnd.google-apps.document", file_size: Int = 0) {
         let formatter = DateFormatter()
