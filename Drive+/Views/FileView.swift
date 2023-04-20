@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct FileView: View {
-    @Binding var file: File
+    var file_metadata: FileMetadata
     
     var body: some View {
-        if(file.mime_type == "application/vnd.google-apps.document"){
-            DocumentView(file: $file)
+        if(file_metadata.mimeType == "application/vnd.google-apps.document"){
+            DocumentView(document_metadata: file_metadata)
+        }else if(file_metadata.mimeType == "application/vnd.google-apps.folder"){
+            ThumbnailListView(folder_metadata: file_metadata)
+        }else{
+            Text("No file type support")
         }
     }
 }

@@ -9,15 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
-    @State var file: Document = Document()
-    @State var fileFetcher = FileFetcher()
+    @State var folder_metadata = FileMetadata(mimeType: "application/vnd.google-apps.folder", id: "root", name: "home")
     
     var body: some View {
 //        switch viewModel.state {
 //            case .signedIn: ThumbnailListView()
 //            case .signedOut: LoginView()
 //        }
-        ThumbnailListView()
+        ThumbnailListView(folder_metadata: folder_metadata)
         
     }
 }

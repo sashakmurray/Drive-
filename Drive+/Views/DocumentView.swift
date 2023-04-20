@@ -9,8 +9,7 @@ import SwiftUI
 
 struct DocumentView: View {
     
-    @Binding var file: File
-    var document: Document { file as! Document}
+    var document_metadata: FileMetadata
     
     var body: some View {
         Spacer()

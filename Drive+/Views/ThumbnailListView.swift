@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct ThumbnailListView: View {
-    @State var folder: Folder = Folder(drive_id: "root")
+    var folder_metadata: FileMetadata
+    @ObservedObject var folder: Folder = Folder()
     
     var body: some View {
-        ZStack {
-            Color.gray
-                .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
-                .opacity(0.1)
-                .cornerRadius(10)
-                NavigationView {
-                    List($folder.content) { $file in
-                        NavigationLink(destination: FileView(file: $file)) {
-                            ThumbnailView(file: $file)
+        VStack{
+            ZStack {
+                    Color.gray
+                        .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
+                        .opacity(0.1)
+                        .cornerRadius(10)
+                    NavigationView {
+                        List(folder.content) { file_metadata in
+                            NavigationLink(destination: FileView(file_metadata: file_metadata)) {
+                                ThumbnailView(file_metadata: file_metadata)
+                            }
                         }
                     }
-                }
+            }.task{
+                await folder.getData(metadata: folder_metadata)
+            }
         }
+        
     }
 }
 
