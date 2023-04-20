@@ -26,10 +26,32 @@ class Document: File {
             }
         }
         
-       
         self.data = data
     }
     
+    func update() async{
+        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/update") else { return }
+        var request = URLRequest(url: url)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let parameters: [String: Any] = [
+            "id": drive_id,
+            "name": name,
+            "mimeType": mime_type,
+            "data": (data as! String).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        ]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
+        request.httpBody = jsonData
+        
+        do {
+            let task = URLSession.shared.dataTask(with: request)
+            task.resume()
+        } catch {
+            print(error)
+        }
+        
+    }
     override func getData(metadata: FileMetadata) async {
         await super.getData(metadata: metadata)
 //
