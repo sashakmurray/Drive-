@@ -15,6 +15,8 @@ struct FileView: View {
             DocumentView(document_metadata: $file_metadata)
         }else if(file_metadata.mimeType == "application/vnd.google-apps.folder"){
             ThumbnailListView(folder_metadata: $file_metadata)
+        }else if(file_metadata.mimeType == "application/vnd.google-apps.spreadsheet"){
+            SpreadsheetView(spreadsheet_metadata: $file_metadata)
         }else{
             Text("No file type support")
         }
