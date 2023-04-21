@@ -45,6 +45,6 @@ struct ThumbnailView: View {
 
 //struct ThumbnailView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ThumbnailView(file: Binding.constant(File()))
+//        ThumbnailView(file: File(name: "hello"))
 //    }
 //}

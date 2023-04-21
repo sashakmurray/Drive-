@@ -42,7 +42,6 @@ class Document: File {
     }
     override func getData(metadata: FileMetadata) async {
         await super.getData(metadata: metadata)
-        //
         guard let url = URL(string: "https://v2.thebannana32.repl.co/api/export?id=\(drive_id)") else {return}
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -55,12 +54,10 @@ class Document: File {
                     for attr in self.content.attributes(at: i, effectiveRange: nil) {
                         if attr.key.rawValue == "NSFont" {
                             self.content.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
-                            //                                print(attr.value as! UIFont)
                         }
                     }
                 }
             }
-            //                print(file.content)
         } catch {
             print(error)
         }

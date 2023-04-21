@@ -15,7 +15,6 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
         }, label: {
             HStack {
                 Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-
                 configuration.label
             }
         })
@@ -35,15 +34,22 @@ struct ThumbnailListView: View {
                         .opacity(0.1)
                         .cornerRadius(10)
                         VStack{
-                            Toggle(isOn: $editing) {
-                                Text("edit")
-                            }
-                                .toggleStyle(iOSCheckboxToggleStyle())
-                                .onChange(of: editing) { value in
-                                    for index in folder.content.indices{
-                                        folder.content[index].editable = false
+                            HStack {
+                                Spacer()
+                                Toggle(isOn: $editing) {
+                                    Text("edit")
+                                        .font(Fonts.medium)
+                                }.toggleStyle(iOSCheckboxToggleStyle())
+                                    .onChange(of: editing) { value in
+                                        for index in folder.content.indices{
+                                            folder.content[index].editable = false
+                                        }
                                     }
-                                }
+                                .padding()
+                                .foregroundColor(.black)
+                            }
+
+                            
                         
                             if(editing){
                                 List($folder.content) { $file_metadata in
