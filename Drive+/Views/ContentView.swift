@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
+    @State var titleScreen = true
     @State var folder_metadata = FileMetadata(mimeType: "application/vnd.google-apps.folder", id: "root", name: "Home")
     
     var body: some View {
@@ -16,7 +17,12 @@ struct ContentView: View {
 //            case .signedIn:  NavigationView { ThumbnailListView(folder_metadata: $folder_metadata)}
 //            case .signedOut: LoginView()
 //        }
-        NavigationView { ThumbnailListView(folder_metadata: $folder_metadata)}
+        if titleScreen {
+            TitleView(titleScreen: $titleScreen)
+        } else {
+            NavigationView { ThumbnailListView(folder_metadata: $folder_metadata)}
+        }
+        
     }
 }
 

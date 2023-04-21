@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A0CE6BC29B10FA800889E54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CE6BB29B10FA800889E54 /* Constants.swift */; };
 		6A0CE6C229B6747D00889E54 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0CE6C129B6747D00889E54 /* DocumentView.swift */; };
+		6A15E3A729F23CE0007BF0F1 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A15E3A629F23CE0007BF0F1 /* TitleView.swift */; };
 		6A52E00729C227AE00757F41 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A52E00629C227AE00757F41 /* TextView.swift */; };
 		6A6F508B29A69E65004E9E46 /* Drive_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F508A29A69E65004E9E46 /* Drive_App.swift */; };
 		6A6F508D29A69E65004E9E46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6F508C29A69E65004E9E46 /* ContentView.swift */; };
@@ -51,6 +52,7 @@
 		58E1D0DDFEBB88BC6AEECC8E /* Pods-Drive+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drive+.release.xcconfig"; path = "Target Support Files/Pods-Drive+/Pods-Drive+.release.xcconfig"; sourceTree = "<group>"; };
 		6A0CE6BB29B10FA800889E54 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6A0CE6C129B6747D00889E54 /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
+		6A15E3A629F23CE0007BF0F1 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		6A52E00629C227AE00757F41 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		6A6F508729A69E65004E9E46 /* Drive+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drive+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6F508A29A69E65004E9E46 /* Drive_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_App.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				BB35817E29F21DC90000DB54 /* SpreadsheetView.swift */,
 				BBA5F72629F04C7100EA26FB /* ThumbnailView.swift */,
 				6A52E00629C227AE00757F41 /* TextView.swift */,
+				6A15E3A629F23CE0007BF0F1 /* TitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				BB35818129F21E520000DB54 /* Spreadsheet.swift in Sources */,
 				BBA5F72929F04F7A00EA26FB /* FileView.swift in Sources */,
 				6A0CE6BC29B10FA800889E54 /* Constants.swift in Sources */,
+				6A15E3A729F23CE0007BF0F1 /* TitleView.swift in Sources */,
 				BBA5F72729F04C7100EA26FB /* ThumbnailView.swift in Sources */,
 				6AB3E44529AE854B00340F17 /* Folder.swift in Sources */,
 				6A52E00729C227AE00757F41 /* TextView.swift in Sources */,
