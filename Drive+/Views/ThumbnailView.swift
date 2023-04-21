@@ -23,16 +23,16 @@ struct ThumbnailView: View {
                         }
                     }
                     .font(.custom("HelveticaNeue-Thin", size: 25))
-                    .padding()
+                    .padding(10)
                 
                 Text(file.last_modified)
                     .font(.custom("HelveticaNeue-Thin", size: 14))
-                    .padding(.leading)
+                    .padding([.leading, .bottom], 10)
             }
             
             Spacer()
             
-            Text(String(file.file_size) + "KB")
+            Text(String(file.file_size) + " KB")
                 .font(.custom("HelveticaNeue-Thin", size: 14))
                 .padding()
             
