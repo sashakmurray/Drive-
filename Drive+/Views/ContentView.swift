@@ -13,13 +13,10 @@ struct ContentView: View {
     
     var body: some View {
 //        switch viewModel.state {
-//            case .signedIn: ThumbnailListView()
+//            case .signedIn:  NavigationView { ThumbnailListView(folder_metadata: $folder_metadata)}
 //            case .signedOut: LoginView()
 //        }
-        NavigationView {
-            FileView(file_metadata: $folder_metadata)
-        }
-        
+        NavigationView { ThumbnailListView(folder_metadata: $folder_metadata)}
     }
 }
 

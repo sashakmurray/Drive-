@@ -15,10 +15,43 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
         }, label: {
             HStack {
                 Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-
+                
                 configuration.label
             }
         })
+    }
+}
+
+struct AsyncButton<Label: View>: View {
+    var action: () async -> Void
+    @ViewBuilder var label: () -> Label
+    
+    @State private var isPerformingTask = false
+    
+    var body: some View {
+        Button(
+            action: {
+                isPerformingTask = true
+                
+                Task {
+                    await action()
+                    isPerformingTask = false
+                }
+            },
+            label: {
+                ZStack {
+                    // We hide the label by setting its opacity
+                    // to zero, since we don't want the button's
+                    // size to change while its task is performed:
+                    label().opacity(isPerformingTask ? 0 : 1)
+                    
+                    if isPerformingTask {
+                        ProgressView()
+                    }
+                }
+            }
+        )
+        .disabled(isPerformingTask)
     }
 }
 
@@ -30,36 +63,58 @@ struct ThumbnailListView: View {
     var body: some View {
         VStack{
             ZStack {
-                    Color.gray
-                        .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
-                        .opacity(0.1)
-                        .cornerRadius(10)
-                        VStack{
-                            Toggle(isOn: $editing) {
-                                Text("edit")
-                            }
-                                .toggleStyle(iOSCheckboxToggleStyle())
-                                .onChange(of: editing) { value in
-                                    for index in folder.content.indices{
-                                        folder.content[index].editable = false
-                                    }
-                                }
-                        
-                            if(editing){
-                                List($folder.content) { $file_metadata in
-                                    Toggle(isOn: $file_metadata.editable) {
-                                        ThumbnailView(file_metadata: $file_metadata)
-                                    }.toggleStyle(iOSCheckboxToggleStyle())
-                                }
-                            }else{
-                                List($folder.content) { $file_metadata in
-                                    NavigationLink(destination: FileView(file_metadata: $file_metadata)) {
-                                        ThumbnailView(file_metadata: $file_metadata)
-                                    }
+                Color.gray
+                    .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
+                    .opacity(0.1)
+                    .cornerRadius(10)
+                VStack{
+                    HStack{
+                        Toggle(isOn: $editing) {
+                            Text("edit")
+                        }.toggleStyle(iOSCheckboxToggleStyle())
+                            .onChange(of: editing) { value in
+                                for index in folder.content.indices{
+                                    folder.content[index].editable = false
                                 }
                             }
-                        }.navigationTitle(Text(folder.name))
                         
+                        
+                        if(editing){
+                            AsyncButton(action: {
+                                print("")
+                                for index in folder.content.indices{
+                                    if(folder.content[index].editable){
+                                        let temp: FileMetadata = folder.content[index]
+                                        await folder.delete(metadata: temp, index: index)
+                                    }
+                                }
+
+                                folder.remove_deleted()
+                            }, label: {
+                                Text("delete")
+                            })
+                            
+                        }else{
+                            Spacer()
+                        }
+                    }
+                    
+                    
+                    if(editing){
+                        List($folder.content) { $file_metadata in
+                            Toggle(isOn: $file_metadata.editable) {
+                                ThumbnailView(file_metadata: $file_metadata)
+                            }.toggleStyle(iOSCheckboxToggleStyle())
+                        }
+                    }else{
+                        List($folder.content) { $file_metadata in
+                            NavigationLink(destination: FileView(file_metadata: $file_metadata)) {
+                                ThumbnailView(file_metadata: $file_metadata)
+                            }
+                        }
+                    }
+                }.navigationTitle(Text(folder.name))
+                
             }.task{
                 await folder.getData(metadata: folder_metadata)
             }
