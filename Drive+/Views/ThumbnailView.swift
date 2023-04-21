@@ -32,9 +32,20 @@ struct ThumbnailView: View {
             
             Spacer()
             
-            Text(String(file.file_size) + " KB")
-                .font(.custom("HelveticaNeue-Thin", size: 14))
-                .padding()
+            if file.mime_type == "application/vnd.google-apps.document"{
+                Text(String() + " Doc")
+                    .font(.custom("HelveticaNeue-Thin", size: 14))
+                    .padding()
+            } else if file.mime_type == "application/vnd.google-apps.spreadsheet"{
+                Text(String() + " Sheet")
+                    .font(.custom("HelveticaNeue-Thin", size: 14))
+                    .padding()
+            } else{
+                Text(String() + " File")
+                    .font(.custom("HelveticaNeue-Thin", size: 14))
+                    .padding()
+            }
+            
             
         }.task {
             await file.getData(metadata: file_metadata)

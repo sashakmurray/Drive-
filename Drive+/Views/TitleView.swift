@@ -22,7 +22,6 @@ struct TitleView: View {
                     .fontWeight(.bold)
                     .padding()
                 
-                
                 Button {
                     titleScreen.toggle()
                 } label: {

@@ -22,6 +22,7 @@ struct ContentView: View {
         } else {
             NavigationView { ThumbnailListView(folder_metadata: $folder_metadata)}
         }
+//        SpreadsheetView()
         
     }
 }
