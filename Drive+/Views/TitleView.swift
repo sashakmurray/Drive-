@@ -11,21 +11,15 @@ struct TitleView: View {
     @Binding var titleScreen: Bool
     var body: some View {
         ZStack {
-            Color.black.opacity(0.2).ignoresSafeArea(.all)
+            Color.blue.opacity(0.3).ignoresSafeArea(.all)
             VStack {
                 Image("logo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding()
-                Group {
-                    Text("Drive")
-                        .foregroundColor(.purple) +
-                    Text("+")
-                        .foregroundColor(.red)
-                        .fontWeight(.heavy)
-                        
-                }
+                Text("Drive+")
                     .font(Fonts.omega_large)
+                    .fontWeight(.bold)
                     .padding()
                 
                 
