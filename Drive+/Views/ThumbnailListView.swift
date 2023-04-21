@@ -5,6 +5,8 @@
 //  Created by Nathan Donagi (student LM) on 4/19/23.
 //
 
+//uwu
+
 import SwiftUI
 
 struct iOSCheckboxToggleStyle: ToggleStyle {
@@ -82,7 +84,7 @@ struct ThumbnailListView: View {
                         } label: {
                             Text("New File")
                         }
-     
+      
                         Toggle(isOn: $editing) {
                             Text("edit")
                         }.toggleStyle(iOSCheckboxToggleStyle())
