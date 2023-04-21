@@ -11,21 +11,9 @@ import SwiftUI
 class Document: File {
     @Published var content: NSMutableAttributedString
     
-    init(name: String, created: Date = Date.now, data: String = "hello", drive_id: String = "") {
-        self.content = NSMutableAttributedString(string: data)
+    init(name: String, created: Date = Date.now, drive_id: String = "") {
+        self.content = NSMutableAttributedString(string: "")
         super.init(name: name, created: created, mime_type: "application/vnd.google-apps.document", drive_id: drive_id)
-        
-        if let string = try? NSAttributedString(data: data.data(using: .utf8) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
-            self.content = string.mutableCopy() as! NSMutableAttributedString
-            for i in 0..<string.length {
-                for attr in self.content.attributes(at: i, effectiveRange: nil) {
-                    if attr.key.rawValue == "NSFont" {
-                        self.content.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
-                    }
-                }
-            }
-        }
-        
         self.data = data
     }
     
@@ -54,16 +42,46 @@ class Document: File {
     }
     override func getData(metadata: FileMetadata) async {
         await super.getData(metadata: metadata)
-//
-//        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/export?id=\(drive_id)") else {return}
-//        do {
-//            let (data, _) = try await URLSession.shared.data(from: url)
-//            let response = try JSONDecoder().decode(FileResponse.self, from: data)
-//        } catch {
-//            print(error)
-//        }
+        //
+        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/export?id=\(drive_id)") else {return}
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            self.data = data
+            let response = try JSONDecoder().decode(DocumentResponse.self, from: data)
+            let text = response.data.decodeUrl() ?? ""
+            if let string = try? NSAttributedString(data: text.data(using: .utf8) ?? Data(), options: [.documentType: NSAttributedString.DocumentType.rtf], documentAttributes: nil) {
+                self.content = string.mutableCopy() as! NSMutableAttributedString
+                for i in 0..<string.length {
+                    for attr in self.content.attributes(at: i, effectiveRange: nil) {
+                        if attr.key.rawValue == "NSFont" {
+                            self.content.addAttribute(NSAttributedString.Key.font, value: attr.value as! UIFont, range: NSRange(location: i, length: 1))
+                            //                                print(attr.value as! UIFont)
+                        }
+                    }
+                }
+            }
+            //                print(file.content)
+        } catch {
+            print(error)
+        }
     }
 }
 
 struct DocumentResponse: Codable {
+    var id: String
+    var name: String
+    var mimeType: String
+    var data: String
+}
+
+extension String
+{
+    func encodeUrl() -> String?
+    {
+        return self.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+    }
+    func decodeUrl() -> String?
+    {
+        return self.removingPercentEncoding
+    }
 }

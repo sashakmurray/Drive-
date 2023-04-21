@@ -14,7 +14,7 @@ struct DocumentView: View {
     @State var textColor = Color.black
     let colors: [Color] = [.black, .red, .green, .blue, .purple]
     @State var editing = true
-    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     @State var textView: TextView?
     
     var body: some View {
@@ -117,21 +117,26 @@ struct DocumentView: View {
                 .padding(30)
             Spacer()
         }.task{
+            await document.getData(metadata: document_metadata)
             textView = TextView(text: $document.content)
             textView!.view.attributedText = textView!.text
-            await document.getData(metadata: document_metadata)
-            
         }.onReceive(timer) { time in
             if let temp = textView!.view.attributedText as? NSMutableAttributedString{
                 textView!.text = temp
             }
             
             document.data = textView!.pushData()
-            print("textview \(textView!.pushData())")
-            print("document \(document.data)")
-            
             Task {
-                await document.update()
+                if(editing){
+                    print("editing -------------------")
+                    document.data = textView!.pushData()
+                    await document.update()
+                }else{
+                    print("downloading -------------------")
+                    await document.getData(metadata: document_metadata)
+                    textView = TextView(text: $document.content)
+                    textView!.view.attributedText = textView!.text
+                }
               }
         }
     }
