@@ -5,6 +5,8 @@
 //  Created by Nathan Donagi (student LM) on 4/19/23.
 //
 
+//uwu
+
 import SwiftUI
 
 struct iOSCheckboxToggleStyle: ToggleStyle {
@@ -15,9 +17,43 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
         }, label: {
             HStack {
                 Image(systemName: configuration.isOn ? "checkmark.square" : "square")
+                
                 configuration.label
             }
         })
+    }
+}
+
+struct AsyncButton<Label: View>: View {
+    var action: () async -> Void
+    @ViewBuilder var label: () -> Label
+    
+    @State private var isPerformingTask = false
+    
+    var body: some View {
+        Button(
+            action: {
+                isPerformingTask = true
+                
+                Task {
+                    await action()
+                    isPerformingTask = false
+                }
+            },
+            label: {
+                ZStack {
+                    // We hide the label by setting its opacity
+                    // to zero, since we don't want the button's
+                    // size to change while its task is performed:
+                    label().opacity(isPerformingTask ? 0 : 1)
+                    
+                    if isPerformingTask {
+                        ProgressView()
+                    }
+                }
+            }
+        )
+        .disabled(isPerformingTask)
     }
 }
 
@@ -29,43 +65,90 @@ struct ThumbnailListView: View {
     var body: some View {
         VStack{
             ZStack {
-                    Color.gray
-                        .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
-                        .opacity(0.1)
-                        .cornerRadius(10)
-                        VStack{
-                            HStack {
-                                Spacer()
-                                Toggle(isOn: $editing) {
-                                    Text("edit")
-                                        .font(Fonts.medium)
-                                }.toggleStyle(iOSCheckboxToggleStyle())
-                                    .onChange(of: editing) { value in
-                                        for index in folder.content.indices{
-                                            folder.content[index].editable = false
-                                        }
-                                    }
-                                .padding()
+                Color.gray
+                    .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
+                    .opacity(0.1)
+                    .cornerRadius(10)
+                VStack{
+                    HStack{
+                        AsyncButton {
+                            await folder.new_folder()
+                            await folder.getData(metadata: folder_metadata)
+                        } label: {
+                            Text("New Folder")
+                                .padding(10)
+                                .font(Fonts.small)
                                 .foregroundColor(.black)
-                            }
-
-                            
+                                .background(Color.black.opacity(0.2))
+                                .cornerRadius(15)
+                        }
                         
-                            if(editing){
-                                List($folder.content) { $file_metadata in
-                                    Toggle(isOn: $file_metadata.editable) {
-                                        ThumbnailView(file_metadata: $file_metadata)
-                                    }.toggleStyle(iOSCheckboxToggleStyle())
+                        AsyncButton {
+                            await folder.new_file()
+                            await folder.getData(metadata: folder_metadata)
+                        } label: {
+                            Text("New File")
+                                .padding(10)
+                                .font(Fonts.small)
+                                .foregroundColor(.black)
+                                .background(Color.black.opacity(0.2))
+                                .cornerRadius(15)
+                        }
+      
+                        Toggle(isOn: $editing) {
+                            Text("edit")
+                                .font(Fonts.small)
+                        }.toggleStyle(iOSCheckboxToggleStyle())
+                            .onChange(of: editing) { value in
+                                for index in folder.content.indices{
+                                    folder.content[index].editable = false
                                 }
-                            }else{
-                                List($folder.content) { $file_metadata in
-                                    NavigationLink(destination: FileView(file_metadata: $file_metadata)) {
-                                        ThumbnailView(file_metadata: $file_metadata)
+                            }
+                            .padding(10)
+                            .foregroundColor(.black)
+                            .background(Color.black.opacity(0.2))
+                            .cornerRadius(15)
+                        
+                        Spacer()
+                        
+                        if(editing){
+                            AsyncButton {
+                                print("")
+                                for index in folder.content.indices{
+                                    if(folder.content[index].editable){
+                                        let temp: FileMetadata = folder.content[index]
+                                        await folder.delete(metadata: temp, index: index)
                                     }
                                 }
+                                folder.remove_deleted()
+                            } label: {
+//                                Text("delete")
+                                Image(systemName: "trash.fill")
+                                    .padding(10)
+                                    .font(Fonts.medium)
+                                    .foregroundColor(.red)
                             }
-                        }.navigationTitle(Text(folder.name))
+                            
+                        }
                         
+                    }.padding()
+                    
+                    
+                    if(editing){
+                        List($folder.content) { $file_metadata in
+                            Toggle(isOn: $file_metadata.editable) {
+                                ThumbnailView(file_metadata: $file_metadata)
+                            }.toggleStyle(iOSCheckboxToggleStyle())
+                        }
+                    }else{
+                        List($folder.content) { $file_metadata in
+                            NavigationLink(destination: FileView(file_metadata: $file_metadata)) {
+                                ThumbnailView(file_metadata: $file_metadata)
+                            }
+                        }
+                    }
+                }.navigationTitle(Text(folder.name))
+                
             }.task{
                 await folder.getData(metadata: folder_metadata)
             }

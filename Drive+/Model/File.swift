@@ -75,16 +75,6 @@ class File: Identifiable, ObservableObject {
         }
     }
     
-    func delete() async{
-        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/delete?id=\(drive_id)") else {return}
-        do {
-            let (_, _) = try await URLSession.shared.data(from: url)
-            name = "deleted"
-        } catch {
-            print(error)
-        }
-    }
-    
     func rename(name: String) async{
         guard let url = URL(string: "https://v2.thebannana32.repl.co/api/rename?name=\(name)&id=\(drive_id)") else {return}
         do {
