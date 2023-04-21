@@ -69,6 +69,20 @@ struct ThumbnailListView: View {
                     .cornerRadius(10)
                 VStack{
                     HStack{
+                        AsyncButton {
+                            await folder.new_folder()
+                            await folder.getData(metadata: folder_metadata)
+                        } label: {
+                            Text("New Folder")
+                        }
+                        
+                        AsyncButton {
+                            await folder.new_file()
+                            await folder.getData(metadata: folder_metadata)
+                        } label: {
+                            Text("New File")
+                        }
+     
                         Toggle(isOn: $editing) {
                             Text("edit")
                         }.toggleStyle(iOSCheckboxToggleStyle())
@@ -78,9 +92,8 @@ struct ThumbnailListView: View {
                                 }
                             }
                         
-                        
                         if(editing){
-                            AsyncButton(action: {
+                            AsyncButton {
                                 print("")
                                 for index in folder.content.indices{
                                     if(folder.content[index].editable){
@@ -90,9 +103,9 @@ struct ThumbnailListView: View {
                                 }
 
                                 folder.remove_deleted()
-                            }, label: {
+                            } label: {
                                 Text("delete")
-                            })
+                            }
                             
                         }else{
                             Spacer()
