@@ -40,9 +40,7 @@ struct SpreadsheetView: View {
                     }
                 }.ignoresSafeArea(.all)
             }.task{
-            await spreadsheet.getData(metadata: spreadsheet_metadata)
-//                await spreadsheet.getData()
-                print(spreadsheet.content)
+                await spreadsheet.getData(metadata: spreadsheet_metadata)
             }
         }
     }

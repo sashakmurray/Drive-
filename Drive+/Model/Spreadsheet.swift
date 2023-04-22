@@ -15,35 +15,34 @@ class Spreadsheet: File {
         for _ in 0..<40 {
             content.append(SpreadsheetRow())
         }
-//        self.content = [SpreadsheetRow(), SpreadsheetRow(), SpreadsheetRow()]
+        //        self.content = [SpreadsheetRow(), SpreadsheetRow(), SpreadsheetRow()]
         
     }
     
-    func getData() async {
-//        override func getData(metadata: FileMetadata) async {
-//        await super.getData(metadata: metadata)
-//        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/sheet?id=\(drive_id)") else {return}
-        if let path = Bundle.main.path(forResource: "test", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                
-//                let (data, _) = try await URLSession.shared.data(from: url)
-                self.data = data
-                let response = try JSONDecoder().decode(SheetResponse.self, from: data)
-                self.data = response.data.decodeUrl() ?? ""
-                var i = 0
-                for row in (self.data as! String).split(whereSeparator: \.isNewline) {
-                    var objects: [String] = []
-                    for num in row.split(whereSeparator: {x in x == ","}) {
-                        objects.append(String(num))
-                    }
-                    self.content[i] = SpreadsheetRow(objects)
-                    i += 1
+    override func getData(metadata: FileMetadata) async {
+        await super.getData(metadata: metadata)
+        print("fnijsdgnisngs")
+        guard let url = URL(string: "https://v2.thebannana32.repl.co/api/sheet?id=\(drive_id)") else {return}
+        print("fnijsdgnisngs")
+        //        if let path = Bundle.main.path(forResource: "test", ofType: "json") {
+        do {
+            //                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+            
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let response = try JSONDecoder().decode(SheetResponse.self, from: data)
+            self.data = response.data.decodeUrl() ?? ""
+            var i = 0
+            for row in (self.data as! String).split(whereSeparator: \.isNewline) {
+                var objects: [String] = []
+                for num in row.split(whereSeparator: {x in x == ","}) {
+                    objects.append(String(num))
                 }
-//                print(self.content)
-            } catch {
-                print(error)
+                self.content[i] = SpreadsheetRow(objects)
+                i += 1
             }
+            print(self.content)
+        } catch {
+            print(error)
         }
     }
 }

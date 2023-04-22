@@ -40,7 +40,11 @@ struct ThumbnailView: View {
                 Text(String() + " Sheet")
                     .font(.custom("HelveticaNeue-Thin", size: 14))
                     .padding()
-            } else{
+            } else if file.mime_type == "application/vnd.google-apps.folder"{
+                Text(String() + " Folder")
+                    .font(.custom("HelveticaNeue-Thin", size: 14))
+                    .padding()
+            } else {
                 Text(String() + " File")
                     .font(.custom("HelveticaNeue-Thin", size: 14))
                     .padding()
