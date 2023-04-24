@@ -20,7 +20,45 @@ struct DocumentView: View {
     var body: some View {
         VStack {
             VStack {
-                FileMenuView(file: document)
+                HStack {
+//                    Button {
+//                    } label: {
+//                        Image(systemName: "arrow.left.circle.fill")
+//                            .padding()
+//                            .foregroundColor(.white)
+//                            .font(Fonts.large)
+//                    }
+                    
+                    TextField("", text: $document.name)
+                        .padding()
+                        .foregroundColor(.white)
+                        .font(Fonts.medium)
+                    
+                    Spacer()
+                    
+                    Button {
+                        self.editing.toggle()
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
+                    Button {
+                    } label: {
+                        Image(systemName: "person.2.fill")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    
+                    Button {
+                    } label: {
+                        Image(systemName: "gear")
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.black.opacity(0.4))
                 if editing {
                     HStack {
                         

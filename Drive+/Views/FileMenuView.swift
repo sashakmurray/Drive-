@@ -12,13 +12,13 @@ struct FileMenuView: View {
     
     var body: some View {
         HStack {
-            Button {
-            } label: {
-                Image(systemName: "arrow.left.circle.fill")
-                    .padding()
-                    .foregroundColor(.white)
-                    .font(Fonts.large)
-            }
+//            Button {
+//            } label: {
+//                Image(systemName: "arrow.left.circle.fill")
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .font(Fonts.large)
+//            }
             
             TextField("", text: $file.name)
                 .padding()
