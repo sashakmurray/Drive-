@@ -66,7 +66,7 @@ struct ThumbnailListView: View {
         VStack{
             ZStack {
                 Color.gray
-                    .frame(width: UIScreen.main.bounds.width, height: 150*CGFloat(folder.content.count), alignment: .top)
+                    .frame(width: UIScreen.main.bounds.width, height: 125*CGFloat(folder.content.count), alignment: .top)
                     .opacity(0.1)
                     .cornerRadius(10)
                 VStack{
@@ -132,7 +132,6 @@ struct ThumbnailListView: View {
                         }
                         
                     }.padding()
-                    
                     
                     if(editing){
                         List($folder.content) { $file_metadata in
